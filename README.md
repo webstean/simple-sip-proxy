@@ -1,4 +1,6 @@
-"# simple-sip-proxy" 
+# SIMPLE SIP for MICROSOFT TEAMS
+
+This is a file with a top-level heading
 
 A simple SIP proxy but adds:-
     TLS Support assuming free Let's Encrypt Certificates (WIP)
@@ -10,4 +12,3 @@ A simple SIP proxy but adds:-
 Define SWITCH to be your PABX FreePbx|3CX|Fusion etc....
 
 Note: Does not require a database, so it cannot be manaed by SRIEMES etc...
-
