@@ -4,6 +4,8 @@ rm -rf simple-sip-proxy
 git clone https://github.com/webstean/simple-sip-proxy
 cp -r simple-sip-proxy/etc /etc
 
+dos2unix /etc/kamailio/kamailio.cfg
+
 grep ifdef /etc/kamailio/kamailio.cfg  | wc -l
 grep endif /etc/kamailio/kamailio.cfg  | wc -l
 
