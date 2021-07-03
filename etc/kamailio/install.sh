@@ -7,10 +7,13 @@ rm -rf simple-sip-proxy
 git clone https://github.com/webstean/simple-sip-proxy
 
 ### cp -r simple-sip-proxy/etc /etc
-if ! (cp simple-sip-proxy/etc/kamailio/kamailio.cfg /etc/kamailio/kamailio.cfg) ; then
+
+if ! (cp -v simple-sip-proxy/etc/kamailio/kamailio.cfg /etc/kamailio/kamailio.cfg) ; then
     echo "Copied Failed!"
     exit 1
 fi
+echo "Copy succeeded"
+
 exit 1
 
 dos2unix /etc/kamailio/kamailio.cfg
