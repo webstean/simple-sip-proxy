@@ -10,7 +10,7 @@ if [ -f /etckamailio/kamailio.cfg] ; then rm -f /etc/kamailio/kamailio.cfg ; fi
 
 ### cp -r simple-sip-proxy/etc /etc
 
-if ! (cp -v simple-sip-proxy/etc/kamailio/kamailio.cfg /etc/kamailio/kamailio.cfg) ; then
+if ! (cp -v -r simple-sip-proxy/etc/* /etc/) ; then
     echo "Copied Failed!"
     exit 1
 fi
