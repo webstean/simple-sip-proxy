@@ -17,6 +17,7 @@ fi
 echo "Copy succeeded"
 
 dos2unix /etc/kamailio/kamailio.cfg
+dos2unix /etc/kamailio/msteams.list
 
 if ! (kamailio -f /etc/kamailio/kamailio.cfg -c ) ; then
     echo ;
