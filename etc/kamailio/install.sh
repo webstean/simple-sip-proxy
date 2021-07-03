@@ -37,4 +37,5 @@ sudo systemctl unmask kamailio.service
 sudo systemctl start kamailio.service
 echo Waiting....
 sleep 5
-sudo systemctl status kamailio.service
+# sudo systemctl status kamailio.service
+kamcmd dispatcher.list | egrep "URI|FLAGS"
