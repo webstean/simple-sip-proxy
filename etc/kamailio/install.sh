@@ -9,3 +9,4 @@ cp simple-sip-proxy/etc/kamailio/msteams.list /etc/kamailio/
 kamailio -v
 kamailio -c
 systemctl restart kamailio
+
