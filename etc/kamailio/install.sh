@@ -34,5 +34,7 @@ sudo cp /etc/kamailio/kamailio.service /etc/systemd/system && sudo systemctl dae
 sudo systemctl disable kamailio.service
 sudo systemctl enable kamailio.service
 sudo systemctl unmask kamailio.service
-sudo systemctl status kamailio.service
 sudo systemctl start kamailio.service
+echo Waiting....
+sleep 5
+sudo systemctl status kamailio.service
