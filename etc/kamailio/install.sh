@@ -6,6 +6,8 @@
 rm -rf simple-sip-proxy
 git clone https://github.com/webstean/simple-sip-proxy
 
+if [ -f /etckamailio/kamailio.cfg] ; then rm -f /etc/kamailio/kamailio.cfg ; fi
+
 ### cp -r simple-sip-proxy/etc /etc
 
 if ! (cp -v simple-sip-proxy/etc/kamailio/kamailio.cfg /etc/kamailio/kamailio.cfg) ; then
