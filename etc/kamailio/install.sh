@@ -2,14 +2,17 @@
 
 rm -rf simple-sip-proxy
 git clone https://github.com/webstean/simple-sip-proxy
-cp simple-sip-proxy/etc/kamailio/kamailio.cfg /etc/kamailio/
-cp simple-sip-proxy/etc/kamailio/tls.cfg /etc/kamailio/
-cp simple-sip-proxy/etc/kamailio/msteams.list /etc/kamailio/
+cp -r simple-sip-proxy/etc /etc
 
 grep ifdef /etc/kamailio/kamailio.cfg  | wc -l
 grep endif /etc/kamailio/kamailio.cfg  | wc -l
 
+kamailio -f /etc/kamailio/kamailio.cfg -c
 kamailio -v
-kamailio -c
-systemctl restart kamailio
+
+sudo systemctl daemon-reload
+sudo systemctl disable kamailio.service
+sudo systemctl enable kamailio.service
+sudo systemctl status kamailio.service
+sudo systemctl start kamailio.service
 
