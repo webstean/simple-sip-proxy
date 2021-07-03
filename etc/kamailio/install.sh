@@ -10,7 +10,7 @@ grep endif /etc/kamailio/kamailio.cfg  | wc -l
 kamailio -f /etc/kamailio/kamailio.cfg -c
 kamailio -v
 
-sudo systemctl daemon-reload
+sudo cp /etc/kamailio/kamailio.service /etc/systemd/system && sudo systemctl daemon-reload
 sudo systemctl disable kamailio.service
 sudo systemctl enable kamailio.service
 sudo systemctl status kamailio.service
