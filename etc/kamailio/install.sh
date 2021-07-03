@@ -6,13 +6,16 @@ cp -r simple-sip-proxy/etc /etc
 
 dos2unix /etc/kamailio/kamailio.cfg
 
-grep ifdef /etc/kamailio/kamailio.cfg  | wc -l
-grep endif /etc/kamailio/kamailio.cfg  | wc -l
+kamailio -f /etc/kamailio/kamailio.cfg -c 
+if [ $? neq 0 ] ; then
+    grep ifdef /etc/kamailio/kamailio.cfg  | wc -l
+    grep endif /etc/kamailio/kamailio.cfg  | wc -l
+    exit 1
+fi
 
-kamailio -f /etc/kamailio/kamailio.cfg -c -ddd
 kamailio -v
 
-if [ -d /var/run/kamailio ] ; mkdir -p /var/run/kamailio; fi
+if [ ! -d /var/run/kamailio ] ; then mkdir -p /var/run/kamailio ; fi
 
 sudo cp /etc/kamailio/kamailio.service /etc/systemd/system && sudo systemctl daemon-reload
 sudo systemctl disable kamailio.service
