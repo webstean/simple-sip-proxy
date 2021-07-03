@@ -32,6 +32,7 @@ kamailio -v
 if [ ! -d /var/run/kamailio ] ; then mkdir -p /var/run/kamailio ; fi
 
 sudo cp /etc/kamailio/kamailio.service /etc/systemd/system && sudo systemctl daemon-reload
+sudo systemctl stop kamailio.service
 sudo systemctl disable kamailio.service
 sudo systemctl enable kamailio.service
 sudo systemctl unmask kamailio.service
