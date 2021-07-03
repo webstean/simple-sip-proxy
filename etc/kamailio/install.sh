@@ -16,8 +16,6 @@ if ! (cp -v simple-sip-proxy/etc/kamailio/kamailio.cfg /etc/kamailio/kamailio.cf
 fi
 echo "Copy succeeded"
 
-exit 1
-
 dos2unix /etc/kamailio/kamailio.cfg
 
 if ! (kamailio -f /etc/kamailio/kamailio.cfg -c ) ; then
@@ -29,13 +27,12 @@ fi
 
 kamailio -v
 
-if [ ! -d /var/run/kamailio ] ; then mkdir -p /var/run/kamailio ; fi
+if [ ! -d /var/run/kamailio ] ; then sudo mkdir -p /var/run/kamailio ; fi
 
-sudo cp /etc/kamailio/kamailio.service /etc/systemd/system && sudo systemctl daemon-reload
 sudo systemctl stop kamailio.service
+sudo cp /etc/kamailio/kamailio.service /etc/systemd/system && sudo systemctl daemon-reload
 sudo systemctl disable kamailio.service
 sudo systemctl enable kamailio.service
 sudo systemctl unmask kamailio.service
 sudo systemctl status kamailio.service
 sudo systemctl start kamailio.service
-
