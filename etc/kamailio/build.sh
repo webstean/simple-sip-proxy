@@ -16,5 +16,8 @@ sudo apt-get install -y libxml2-dev
 sudo apt-get install -y libpcre3-dev
 sudo apt -y autoremove
 
-make cfg
+make include_modules="tls" cfg
 make all
+make install
+ls -la /usr/local/lib64/kamailio/modules/tls.so
+
