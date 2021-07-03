@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# exit immediately if non-zero return
+set -e
+
 rm -rf simple-sip-proxy
 git clone https://github.com/webstean/simple-sip-proxy
 cp -r simple-sip-proxy/etc /etc
@@ -7,7 +10,7 @@ cp -r simple-sip-proxy/etc /etc
 dos2unix /etc/kamailio/kamailio.cfg
 
 kamailio -f /etc/kamailio/kamailio.cfg -c 
-if [ $? neq 0 ] ; then
+if [ $? -neq 0 ] ; then
     grep ifdef /etc/kamailio/kamailio.cfg  | wc -l
     grep endif /etc/kamailio/kamailio.cfg  | wc -l
     exit 1
