@@ -20,9 +20,10 @@ ALL: 52.112.0.0/14
 ALL: 52.120.0.0/14
 
 # only allow .userdomain.com
-“^sip:[^@]+@[^.]+\.userdomain\.com(:[0-9]+)?$” : ALL
+# “^sip:[^@]+@[^.]+\.userdomain\.com(:[0-9]+)?$” : ALL
 
 # if(allow_source_address()) {
 #    # source IP is in address table
 #    ...
 # }
+#
