@@ -1,0 +1,22 @@
+# Allowed address list for Microsoft Teams with Kamailio
+#
+# address file - records to match with allow_address(...) and variants
+# * file format details
+#   - comments start with # and go to end of line
+#   - each line corresponds to a record with following attributes:
+#
+#     (groupid,int) (address,str) (netmask,int,o), (port,int,o) (tag,str,o)
+#
+# * description of the tokens used to describe line format
+#   - int: expected integer value
+#   - str: expected string value
+#   - o: optional field
+
+100 52.112.0.0 14
+100 52.120.0.0 14
+
+# if(allow_source_address(100)) {
+#    # source IP is in address table
+#    ...
+# }
+#
