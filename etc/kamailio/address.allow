@@ -12,6 +12,11 @@
 #   - str: expected string value
 #   - o: optional field
 
+# 9 PABX / UAC allowed
+# 9 1.1.1.1 24
+
+# 22 Microsft Teams allowed
+# see:
 22 52.112.0.0 14
 22 52.120.0.0 14
 
