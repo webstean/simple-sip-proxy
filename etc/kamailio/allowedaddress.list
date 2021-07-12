@@ -1,4 +1,4 @@
-# Allow file for Microsoft Teams with Kamailio
+# Allowed address list for Microsoft Teams with Kamailio
 #
 # Syntax: 
 #	from_list [EXCEPT from_list] : req_uri_list [EXCEPT req_uri_list]
