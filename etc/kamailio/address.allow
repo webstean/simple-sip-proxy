@@ -14,13 +14,13 @@
 
 # netmask = 32 means just the IP address
 
-# 9 PABXs 
-9 10.0.0.4 32
+# Group 11 : PABXs allowed 
+11 10.0.0.4 32
 
-# 10 UACs allowed
+# Group 10 : UACs allowed
 # 10 1.10.X.Y 32
 
-# 22 Microsft Teams allowed
+# Group 22 : Microsft Teams allowed
 # see:
 22 52.112.0.0 14
 22 52.120.0.0 14
