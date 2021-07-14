@@ -12,3 +12,6 @@ set sip.calls	off
 set sngrep.displayhost	on
 set cl.noexitprompt	on
 # set capture.keyfile /etc/letsencrypt/...
+# set capture.tlsserver 192.168.1.1:5061
+# set capture.tlsserver_cipher_default=AES256-SHA
+
