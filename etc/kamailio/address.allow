@@ -12,8 +12,13 @@
 #   - str: expected string value
 #   - o: optional field
 
-# 9 PABX / UAC allowed
-# 9 1.1.1.1 24
+# netmask = 32 means just the IP address
+
+# 9 PABXs 
+9 10.0.0.4 32
+
+# 10 UACs allowed
+# 10 1.10.X.Y 32
 
 # 22 Microsft Teams allowed
 # see:
