@@ -1,0 +1,14 @@
+# System-wide configuration for sngrep
+# Format: set <option> <value>
+
+set background	black 
+set syntax	on
+set syntax.tag	on
+set syntax.branch	on
+set hintkeyalt	on
+set capture.lookup	on
+set sip.ignoreicomplete	off
+set sip.calls	off
+set sngrep.displayhost	on
+set cl.noexitprompt	on
+# set capture.keyfile /etc/letsencrypt/...
