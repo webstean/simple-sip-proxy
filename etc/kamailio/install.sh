@@ -49,6 +49,10 @@ sudo systemctl start kamailio.service
 echo Waiting....
 sleep 5
 # sudo systemctl status kamailio.service
-kamcmd permissions.addressDump
-kamcmd permissions.subnetDump 
+#kamcmd permissions.addressDump
+#kamcmd permissions.subnetDump 
+# short, short-precise, short-iso, short-iso-precise, short-full, short-monotonic, short-unix,
+# verbose, export, json, json-pretty, json-sse, cat
+sudo systemctl status rtpengine.service --output=short --lines=5 --no-pager 
+sudo systemctl status kamailio.service  --output=short --lines=5 --no-pager 
 kamcmd dispatcher.list | egrep "URI|FLAGS"
