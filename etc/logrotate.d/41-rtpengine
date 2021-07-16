@@ -1,0 +1,8 @@
+var/log/rtpengine.log {
+    missingok
+    size=50M
+    create 0644 kamailio kamailio
+    postrotate
+	   /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true
+    endscript
+}
