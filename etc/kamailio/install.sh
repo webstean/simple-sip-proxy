@@ -32,7 +32,7 @@ kamailio -v
 if [ ! -d /var/run/kamailio ] ; then sudo mkdir -p /var/run/kamailio ; fi
 
 sudo systemctl stop kamailio.service && sudo systemctl stop rtpengine.service
-sudo cp /etc/kamailio/kamailio.service /etc/systemd/system && sudo cp /etc/kamailio/rtpengine.service /etc/systemd/system && sudo systemctl daemon-reload
+sudo cp /etc/kamailio/kamailio.service /etc/systemd/system && sudo systemctl daemon-reload
 
 # rtpengine
 #sudo systemctl disable rtpengine.service
@@ -53,6 +53,6 @@ sleep 5
 #kamcmd permissions.subnetDump 
 # short, short-precise, short-iso, short-iso-precise, short-full, short-monotonic, short-unix,
 # verbose, export, json, json-pretty, json-sse, cat
-sudo systemctl status rtpengine.service --output=short --lines=5 --no-pager 
-sudo systemctl status kamailio.service  --output=short --lines=5 --no-pager 
 kamcmd dispatcher.list | egrep "URI|FLAGS"
+sudo systemctl status kamailio.service  --output=short --lines=5 --no-pager 
+sudo systemctl status rtpengine.service --output=short --lines=5 --no-pager 
