@@ -31,12 +31,21 @@ kamailio -v
 
 if [ ! -d /var/run/kamailio ] ; then sudo mkdir -p /var/run/kamailio ; fi
 
-sudo systemctl stop kamailio.service
-sudo cp /etc/kamailio/kamailio.service /etc/systemd/system && sudo systemctl daemon-reload
+sudo systemctl stop kamailio.service && sudo systemctl stop rtpengine.service
+sudo cp /etc/kamailio/kamailio.service /etc/systemd/system && sudo cp /etc/kamailio/rtpengine.service /etc/systemd/system && sudo systemctl daemon-reload
+
+# rtpengine
+sudo systemctl disable rtpengine.service
+sudo systemctl enable rtpengine.service
+sudo systemctl unmask rtpengine.service
+sudo systemctl start rtpengine.service
+
+# kamailio
 sudo systemctl disable kamailio.service
 sudo systemctl enable kamailio.service
 sudo systemctl unmask kamailio.service
 sudo systemctl start kamailio.service
+
 echo Waiting....
 sleep 5
 # sudo systemctl status kamailio.service
