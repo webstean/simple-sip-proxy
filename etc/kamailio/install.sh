@@ -40,4 +40,6 @@ sudo systemctl start kamailio.service
 echo Waiting....
 sleep 5
 # sudo systemctl status kamailio.service
+kamcmd permissions.addressDump
+kamcmd permissions.subnetDump 
 kamcmd dispatcher.list | egrep "URI|FLAGS"
