@@ -1,8 +1,14 @@
-var/log/rtpengine.log {
+/var/log/rtpengine*.log  {
+    daily
     missingok
     size=50M
-    create 0644 kamailio kamailio
+    rotate 5
+    compress
+    delaycompress
+    create 0644 root root
+    sharedscripts
+    copytruncate
     postrotate
-	   /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true
+        systemctl kill -s HUP --kill-who=main rsyslog 2>/dev/null || true
     endscript
 }
