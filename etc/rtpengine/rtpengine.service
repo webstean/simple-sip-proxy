@@ -13,7 +13,7 @@ EnvironmentFile=-$RUNDIR/daemon.conf
 Environment='USER=root'
 Environment='GROUP=root'
 # PIDFile requires an absolute path
-PIDFile=/var/run/rtpengine/rtpengine.pid
+Environment='PIDFile=/var/run/rtpengine/rtpengine.pid'
 # ExecStart* requires an absolute path for the program
 #ExecStartPre=-/bin/mkdir -p $RUNDIR
 #ExecStartPre=-/bin/chown -R rtpengine:rtpengine $RUNDIR
