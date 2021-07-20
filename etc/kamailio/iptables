@@ -32,7 +32,7 @@
 -A ICMP -p icmp -m icmp --icmp-type 8 -m limit --limit 10/sec --limit-burst 10 -m state --state NEW -j ACCEPT 
 -A ICMP -p icmp -j DROP 
 -A PSD -p tcp -m statistic --mode random --probability 0.050000 -j REJECT --reject-with icmp-port-unreachable 
--A PSD -p tcp -m statistic --mode random --probability 0.050000 -j TARPIT  --reset 
+# -A PSD -p tcp -m statistic --mode random --probability 0.050000 -j TARPIT  --reset 
 -A PSD -p tcp -m statistic --mode random --probability 0.500000 -j TARPIT  --tarpit 
 -A PSD -p udp -m statistic --mode random --probability 0.050000 -j REJECT --reject-with icmp-port-unreachable 
 -A PSD -m statistic --mode random --probability 0.050000 -j REJECT --reject-with icmp-host-unreachable  
