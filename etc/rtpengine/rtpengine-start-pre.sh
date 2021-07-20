@@ -147,6 +147,10 @@ firewallSetup() {
     ip6tables -I INPUT -j rtpengine
     ip6tables -D rtpengine -p udp -j RTPENGINE --id "$TABLE" 2>/dev/null
     ip6tables -I rtpengine -p udp -j RTPENGINE --id "$TABLE"
+
+    # ensure that the table we want to use doesn't exist - usually needed after a daemon
+    # restart, otherwise will error
+    echo 'del 0' > /proc/rtpengine/control
 }
 
 firewallSetup
