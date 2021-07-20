@@ -21,11 +21,7 @@ sudo iptables -P OUTPUT   DROP
 # allow forwarding
 sudo iptables -P FORWARD  ACCEPT
 
-
-iptables -F
-
-
-# now restore
+# now install kamailio rules
 sudo iptables-restore /etc/kamailio/iptables
 
 
