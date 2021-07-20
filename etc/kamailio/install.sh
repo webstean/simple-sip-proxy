@@ -45,7 +45,7 @@ sudo systemctl daemon-reload
 
 chmod +x /etc/rtpengine/rtpengine-start-pre.sh
 chmod +x /etc/rtpengine/rtpengine-stop-post.sh
-chmod +x /etc/rtpengine/iptables.sh
+chmod +x /etc/kamailio/iptables.sh
 
 # rtpengine
 sudo systemctl enable rtpengine.service

@@ -130,19 +130,20 @@ firewallSetup() {
     fi
 
     # initialise firewall 
+    
     # delete all rules
-    iptables -F
+    #iptables -F
     # delete user chanin
-    iptables -X
+    #iptables -X
     # don't allow anything
-    iptables -P INPUT    DROP
-    iptables -P OUTPUT   DROP
+    #iptables -P INPUT    DROP
+    #iptables -P OUTPUT   DROP
 
     # allow forwarding
-    iptables -P FORWARD  ACCEPT
+    #iptables -P FORWARD  ACCEPT
 
     # install kamailio rules
-    iptables-restore /etc/kamailio/iptables
+    #iptables-restore /etc/kamailio/iptables
 
     # now the rtpengine rules
 
