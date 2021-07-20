@@ -43,6 +43,9 @@ sudo cp /etc/kamailio/kamailio.service /etc/systemd/system
 sudo cp /etc/rtpengine/rtpengine.service /etc/systemd/system
 sudo systemctl daemon-reload
 
+chmod +x /etc/rtpengine/rtpengine-start-pre.sh
+chmod +x /etc/rtpengine/rtpengine-stop-post.sh
+
 # rtpengine
 sudo systemctl enable rtpengine.service
 #sudo systemctl unmask rtpengine.service
