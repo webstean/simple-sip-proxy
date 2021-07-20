@@ -35,7 +35,8 @@ sudo systemctl stop kamailio.service && sudo systemctl stop rtpengine.service
 sudo cp /etc/kamailio/kamailio.service /etc/systemd/system && sudo systemctl daemon-reload
 
 # rtpengine
-#sudo systemctl disable rtpengine.service
+sudo systemctl disable rtpengine.service
+cp rtpengine/rtpengine.service /etc/systemd/system
 sudo systemctl enable rtpengine.service
 #sudo systemctl unmask rtpengine.service
 sudo systemctl start rtpengine.service
