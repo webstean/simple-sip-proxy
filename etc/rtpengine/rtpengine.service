@@ -7,6 +7,7 @@ After=network.target iptables.service redis.service syslog.service
 [Service]
 Type=simple
 Environment='CFGFILE=/etc/default/rtpengine.conf'
+Environment='CFGFILE=/etc/rtpengine/rtpengine.conf'
 Environment='RUNDIR=/var/run/rtpengine'
 EnvironmentFile=-$RUNDIR/daemon.conf
 # PIDFile requires an absolute path
