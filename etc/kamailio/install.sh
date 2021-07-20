@@ -21,9 +21,9 @@ dos2unix /etc/kamailio/msteams.list
 
 if ! (kamailio -f /etc/kamailio/kamailio.cfg -c ) ; then
     echo ;
-    grep ifdef /etc/kamailio/kamailio.cfg  | wc -l
-    grep endif /etc/kamailio/kamailio.cfg  | wc -l
-    kamailio -f /etc/kamailio/kamailio.cfg --cfg-print
+    #grep ifdef /etc/kamailio/kamailio.cfg  | wc -l
+    #grep endif /etc/kamailio/kamailio.cfg  | wc -l
+    #kamailio -f /etc/kamailio/kamailio.cfg --cfg-print
     exit 1
 fi
 
