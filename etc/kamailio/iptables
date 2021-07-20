@@ -46,6 +46,5 @@
 -A SERVICES -p tcp -m tcp --dport 443 -m state --state NEW -j ACCEPT 
 -A SERVICES -p tcp -m tcp --dport 22 -m state --state NEW -j ACCEPT 
 -A SERVICES -i eth0 -j PSD 
--A RTP -p tcp - udp -m multiport --dports 1024-65535 -m state --state NEW -j ACCEPT
 COMMIT
 
