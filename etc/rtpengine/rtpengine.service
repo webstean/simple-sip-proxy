@@ -18,7 +18,7 @@ PIDFile=/var/run/rtpengine/rtpengine.pid
 #ExecStartPre=-/bin/mkdir -p $RUNDIR
 #ExecStartPre=-/bin/chown -R rtpengine:rtpengine $RUNDIR
 ExecStartPre=/etc/rtpengine/rtpengine-start-pre.sh $CFGFILE
-ExecStart=/usr/sbin/rtpengine -f --config-file $CFGFILE
+ExecStart=/usr/sbin/rtpengine -f --config-file $CFGFILE --pidfile=$PIDFile
 ExecStopPost=/etc/rtpengine/rtpengine-stop-post.sh $CFGFILE
 Restart=on-failure
 
