@@ -129,6 +129,23 @@ firewallSetup() {
         echo "del $TABLE" > /proc/rtpengine/control 2>/dev/null
     fi
 
+    # initialise firewall 
+    # delete all rules
+    iptables -F
+    # delete user chanin
+    iptables -X
+    # don't allow anything
+    iptables -P INPUT    DROP
+    iptables -P OUTPUT   DROP
+
+    # allow forwarding
+    iptables -P FORWARD  ACCEPT
+
+    # install kamailio rules
+    iptables-restore /etc/kamailio/iptables
+
+    # now the rtpengine rules
+
     # Freshly add the iptables rules to forward the udp packets to the iptables-extension "RTPEngine":
     # Remember iptables table = chains, rules stored in the chains
     # -N (create a new chain with the name rtpengine)

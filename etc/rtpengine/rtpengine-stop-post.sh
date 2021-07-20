@@ -70,7 +70,7 @@ firewallTeardown() {
     ip6tables -D rtpengine -p udp -j RTPENGINE --id "$TABLE" 2>/dev/null
     ip6tables -D INPUT -j rtpengine 2> /dev/null
     ip6tables -D rtpengine 2> /dev/null
-
+    
     # Remove kernel module if loaded
     if lsmod | grep -q "$MODNAME" 2>/dev/null; then
         rmmod $MODNAME 2>/dev/null
