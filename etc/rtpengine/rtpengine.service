@@ -14,9 +14,9 @@ PIDFile=/var/run/rtpengine/rtpengine.pid
 # ExecStart* requires an absolute path for the program
 ExecStartPre=-/bin/mkdir -p $RUNDIR
 ExecStartPre=-/bin/chown -R root:root $RUNDIR
-ExecStartPre=/etc/rtpengine/rtpengine-start-pre /etc/default/rtpengine.conf
+ExecStartPre=/etc/rtpengine/rtpengine-start-pre.sh $CFGFILE
 ExecStart=/usr/sbin/rtpengine -f $OPTIONS
-ExecStopPost=/etc/rtpengine/rtpengine-stop-post /etc/default/rtpengine.conf
+ExecStopPost=/etc/rtpengine/rtpengine-stop-post.sh $CFGFILE
 Restart=on-failure
 
 [Install]
