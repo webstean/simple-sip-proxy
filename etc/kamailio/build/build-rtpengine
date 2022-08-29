@@ -1,30 +1,48 @@
 #!/bin/sh
 
+sudo mkdir -d /etc/kamailio/build
+sudo chown $USER /etc/kamailio/build
+sudo chmod 750 /etc/kamailio/build
+
 sudo apt-get -y update
 # sudo apt -y upgrade
 sudo apt-get -y install dpkg-dev
 
 git clone https://github.com/sipwise/rtpengine
-cd rtpengine
 
 # install dependencies
 sudo apt-get -y install iptables-dev 
 sudo apt-get -y install libxtables-dev
+sudo apt-get -y install cmake libjson-perl libwebsockets-dev
 sudo apt-get -y install debhelper default-libmysqlclient-dev gperf libavcodec-dev libavfilter-dev libavformat-dev libavutil-dev libbencode-perl libcrypt-openssl-rsa-perl libcrypt-rijndael-perl libhiredis-dev libio-multiplex-perl libio-socket-inet6-perl libjson-glib-dev libdigest-crc-perl libdigest-hmac-perl libnet-interface-perl libnet-interface-perl libssl-dev libsystemd-dev libxmlrpc-core-c3-dev libcurl4-openssl-dev libevent-dev libpcap0.8-dev markdown unzip nfs-common dkms libspandsp-dev libiptc-dev libmosquitto-dev python3-websockets
 
+# version 1 install into /etc/kamailio/build/
+#VER=1.0.4
+#curl https://codeload.github.com/BelledonneCommunications/bcg729/tar.gz/$VER >bcg729_$VER.orig.tar.gz
+#tar zxf bcg729_$VER.orig.tar.gz 
+#cd bcg729-$VER 
+#git clone https://github.com/ossobv/bcg729-deb.git debian 
+#dpkg-buildpackage -us -uc -sa -b -rfakeroot
+#cd ../
+
+# version 2 install into /etc/kamailio/build/
+git clone https://github.com/vma/bcg729
+cd bcg729
+fakeroot dh binary
+cd ..
+sudo dpkg -i libbcg729-*.deb
+
+cd rtpengine
 # check dependencies -  should be none missing
-dpkg-buildpackage
+if ! (dpkg-checkbuilddeps) ; then
+    echo "Dependencies check failed!"
+    # exit 1
+fi
+dpkg-buildpackage --no-sign
+# if desperate
+# dpkg-buildpackage  --no-sign -d
 
+dpkg -i ngcp-rtpengine-daemon_*.deb ngcp-rtpengine-iptables_*.deb ngcp-rtpengine-kernel-dkms_*.deb 
 
-
-git clone 
-sudo apt-get install -y git-core gcc g++ flex bison libmysqlclient-dev make libssl-dev libcurl4-openssl-dev
-sudo apt-get install -y libxml2-dev libpcre3-dev libjansson-dev libjson-c-dev
-sudo apt-get install -y autoremove
-# sqlite
-sudo apt-get install -y libsqlite3-0 libsqlite3-dev sqlite3
-
-make include_modules="tls outbound jansson json sqlite" cfg
-make all
-sudo make install
-ls -la /usr/local/lib64/kamailio/modules/tls.so
+# Clean up
+sudo apt -y autoremove
