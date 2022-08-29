@@ -71,3 +71,11 @@ sleep 5
 kamcmd dispatcher.list | egrep "URI|FLAGS"
 sudo systemctl status kamailio.service  --output=short --lines=5 --no-pager 
 sudo systemctl status rtpengine.service --output=short --lines=5 --no-pager 
+
+# check certificate - without validation
+openssl s_client -connect localhost:5061 -tls1
+
+# check certificate - with validation
+openssl s_client -connect localhost:5061 -tls1 -CAfile /etc/certs/demoCA/cert.pem
+
+
