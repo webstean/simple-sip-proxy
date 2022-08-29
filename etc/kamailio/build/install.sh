@@ -16,6 +16,13 @@ if ! (cp -v -r simple-sip-proxy/etc/* /etc/) ; then
 fi
 echo "Copy succeeded"
 
+# rtpengine
+sudo iptables -N rtpengine
+sudo iptables -I INPUT -p udp -j rtpengine
+sudo iptables -I rtpengine -j RTPENGINE --id 42
+
+
+# kamailio
 if [ -x "$(dos2unix)" ] ; then
     # just in case
     dos2unix /etc/kamailio/kamailio.cfg
