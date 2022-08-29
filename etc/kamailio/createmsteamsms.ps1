@@ -1,14 +1,14 @@
 
-$sp = New-AzADServicePrincipal -DisplayName ServicePrincipalName
 
-Connect-AzAccount -Identity
- 
+Install-Module MicrosoftTeams
+Connect-MicrosoftTeams -UseDeviceAuthentication
 
-$userCredential = Get-Credential
-$sfbSession = New-CsOnlineSession -Credential $userCredential
-Import-PSSession $sfbSession
+Get-CsTenant
+Get-Team | Sort DisplayName
 
-New-CsOnlinePSTNGateway -Fqdn SBC-DNS-DOMAIN -SipSignallingPort 5061 -MaxConcurrentSessions 10 -ForwardCallHistory $true -Enabled $true
+
+Update-Module MicrosoftTeams
+New-CsOnlinePSTNGateway -Fqdn SBC-DNS-DOMAIN.test.org -SipSignalingPort 5061 -MaxConcurrentSessions 10 -ForwardCallHistory $true -Enabled $true
 
 Set-CsOnlinePstnUsage -Identity Global -Usage @{Add="Unrestricted"}
 
