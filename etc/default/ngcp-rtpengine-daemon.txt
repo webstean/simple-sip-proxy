@@ -1,3 +1,4 @@
+# Build will install it owns version, see ngcp-rtpengine-daemon
 RUN_RTPENGINE=yes
 CONFIG_FILE=/etc/rtpengine/rtpengine.conf
 CONFIG_SECTION=rtpengine
