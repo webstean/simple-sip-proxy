@@ -21,6 +21,7 @@ sudo iptables -N rtpengine
 sudo iptables -I INPUT -p udp -j rtpengine
 sudo iptables -I rtpengine -j RTPENGINE --id 42
 
+rtpengine --codecs
 
 # kamailio
 if [ -x "$(dos2unix)" ] ; then
