@@ -1,0 +1,30 @@
+#!/bin/sh
+
+sudo apt-get -y update
+# sudo apt -y upgrade
+sudo apt-get -y install dpkg-dev
+
+git clone https://github.com/sipwise/rtpengine
+cd rtpengine
+
+# install dependencies
+sudo apt-get -y install iptables-dev 
+sudo apt-get -y install libxtables-dev
+sudo apt-get -y install debhelper default-libmysqlclient-dev gperf libavcodec-dev libavfilter-dev libavformat-dev libavutil-dev libbencode-perl libcrypt-openssl-rsa-perl libcrypt-rijndael-perl libhiredis-dev libio-multiplex-perl libio-socket-inet6-perl libjson-glib-dev libdigest-crc-perl libdigest-hmac-perl libnet-interface-perl libnet-interface-perl libssl-dev libsystemd-dev libxmlrpc-core-c3-dev libcurl4-openssl-dev libevent-dev libpcap0.8-dev markdown unzip nfs-common dkms libspandsp-dev libiptc-dev libmosquitto-dev python3-websockets
+
+# check dependencies -  should be none missing
+dpkg-buildpackage
+
+
+
+git clone 
+sudo apt-get install -y git-core gcc g++ flex bison libmysqlclient-dev make libssl-dev libcurl4-openssl-dev
+sudo apt-get install -y libxml2-dev libpcre3-dev libjansson-dev libjson-c-dev
+sudo apt-get install -y autoremove
+# sqlite
+sudo apt-get install -y libsqlite3-0 libsqlite3-dev sqlite3
+
+make include_modules="tls outbound jansson json sqlite" cfg
+make all
+sudo make install
+ls -la /usr/local/lib64/kamailio/modules/tls.so
