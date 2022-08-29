@@ -13,8 +13,11 @@ git clone https://github.com/sipwise/rtpengine
 # install dependencies
 sudo apt-get -y install iptables-dev 
 sudo apt-get -y install libxtables-dev
+sudo apt-get -y install libavcodec-extra
 sudo apt-get -y install cmake libjson-perl libwebsockets-dev
 sudo apt-get -y install debhelper default-libmysqlclient-dev gperf libavcodec-dev libavfilter-dev libavformat-dev libavutil-dev libbencode-perl libcrypt-openssl-rsa-perl libcrypt-rijndael-perl libhiredis-dev libio-multiplex-perl libio-socket-inet6-perl libjson-glib-dev libdigest-crc-perl libdigest-hmac-perl libnet-interface-perl libnet-interface-perl libssl-dev libsystemd-dev libxmlrpc-core-c3-dev libcurl4-openssl-dev libevent-dev libpcap0.8-dev markdown unzip nfs-common dkms libspandsp-dev libiptc-dev libmosquitto-dev python3-websockets
+
+# to support the G.729 codec for transcoding purposes, the external library bcg729 is required
 
 # version 1 install into /etc/kamailio/build/
 #VER=1.0.4
@@ -42,7 +45,12 @@ dpkg-buildpackage --no-sign
 # if desperate
 # dpkg-buildpackage  --no-sign -d
 
-dpkg -i ngcp-rtpengine-daemon_*.deb ngcp-rtpengine-iptables_*.deb ngcp-rtpengine-kernel-dkms_*.deb 
+dpkg -i ngcp-rtpengine-daemon_*.deb ngcp-rtpengine-iptables_*.deb ngcp-rtpengine-kernel-dkms_*.deb
+
+# successful compilation of the module will produce the file xt_RTPENGINE.ko.
+# The module can be inserted into the running kernel manually through insmod xt_RTPENGINE.ko (which will result in an error if depending modules aren't loaded, 
+# for example the x_tables module), but it's recommended to copy the module into /lib/modules/$VERSION/updates/, followed by running depmod -a. 
+# After this, the module can be loaded by issuing modprobe xt_RTPENGINE.
 
 # Clean up
 sudo apt -y autoremove
