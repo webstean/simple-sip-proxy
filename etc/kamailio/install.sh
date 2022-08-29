@@ -16,8 +16,12 @@ if ! (cp -v -r simple-sip-proxy/etc/* /etc/) ; then
 fi
 echo "Copy succeeded"
 
-dos2unix /etc/kamailio/kamailio.cfg
-dos2unix /etc/kamailio/msteams.list
+if [ -x "$(dos2unix)" ] ; then
+    # just in case
+    dos2unix /etc/kamailio/kamailio.cfg
+    dos2unix /etc/kamailio/msteams.list
+    dos2unix /etc/kamailio/tls.list
+fi
 
 if ! (kamailio -f /etc/kamailio/kamailio.cfg -c ) ; then
     echo ;
