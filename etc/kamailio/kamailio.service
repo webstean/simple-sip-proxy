@@ -14,7 +14,8 @@ EnvironmentFile=-/etc/default/kamailio
 EnvironmentFile=-/etc/default/kamailio.d/*
 # PIDFile requires a full absolute path
 PIDFile=/var/run/kamailio/kamailio.pid
-# ExecStart requires a full absolute path
+ExecStartPre=/bin/sleep 10
+# Note: ExecStart requires a full absolute path
 # ExecStart=/usr/sbin/kamailio -P /var/run/kamailio/kamailio.pid -f $CFGFILE -m $SHM_MEMORY -M $PKG_MEMORY -u $USER -g $GROUP
 ExecStart=/usr/local/sbin/kamailio -P /var/run/kamailio/kamailio.pid -f $CFGFILE -m $SHM_MEMORY -M $PKG_MEMORY -u $USER -g $GROUP -S -e
 Restart=on-abort
