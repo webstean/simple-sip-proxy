@@ -32,8 +32,16 @@ sudo apt-get -y install debhelper default-libmysqlclient-dev gperf libavcodec-de
 git clone https://github.com/vma/bcg729
 cd bcg729
 fakeroot dh binary
+if [ $? -ne 0 ]; then
+    printerr "Problem installing RTPEngine DEB's"
+    exit 1
+fi
 cd ..
 sudo dpkg -i libbcg729-*.deb
+if [ $? -ne 0 ]; then
+    printerr "Problem installing RTPEngine DEB's"
+    exit 1
+fi
 
 cd rtpengine
 # check dependencies -  should be none missing
