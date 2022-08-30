@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# exit immediately if non-zero return
-# set -e
+# Debug this script if in debug mode
+(( $DEBUG == 1 )) && set -x
 
 rm -rf simple-sip-proxy
 git clone https://github.com/webstean/simple-sip-proxy
@@ -15,7 +15,6 @@ if ! (cp -v -r simple-sip-proxy/etc/* /etc/) ; then
     exit 1
 fi
 echo "Copy succeeded"
-
 
 if [ -x "$(rtpengine --codecs)" ] ; then
     # /etc/init.d/ngcp-rtpengine-daemon start
@@ -44,6 +43,29 @@ if ! (kamailio -f /etc/kamailio/kamailio.cfg -c ) ; then
 fi
 
 kamailio -v
+
+
+
+# Assume kamailio and rtpengine are now installed
+
+# Enable and start firewalld if not already running
+systemctl enable firewalld
+systemctl start firewalld
+
+# rtpengine Defaults Files
+    (cat << 'EOF'
+RUN_RTPENGINE=yes
+CONFIG_FILE=/etc/rtpengine/rtpengine.conf
+# CONFIG_SECTION=rtpengine
+PIDFILE=/var/run/rtpengine/rtpengine.pid
+MANAGE_IPTABLES=yes
+TABLE=0
+SET_USER=rtpengine
+SET_GROUP=rtpengine
+LOG_STDERR=yes
+EOF
+    ) > /etc/default/rtpengine.conf
+
 
 if [ ! -d /var/run/kamailio ] ; then sudo mkdir -p /var/run/kamailio ; fi
 
