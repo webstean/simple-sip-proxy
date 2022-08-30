@@ -6,7 +6,7 @@
 rm -rf simple-sip-proxy
 git clone https://github.com/webstean/simple-sip-proxy
 
-if [ -f /etckamailio/kamailio.cfg] ; then rm -f /etc/kamailio/kamailio.cfg ; fi
+if [ -f /etc/kamailio/kamailio.cfg] ; then rm -f /etc/kamailio/kamailio.cfg ; fi
 
 ### cp -r simple-sip-proxy/etc /etc
 
@@ -16,10 +16,14 @@ if ! (cp -v -r simple-sip-proxy/etc/* /etc/) ; then
 fi
 echo "Copy succeeded"
 
-# rtpengine
-sudo iptables -N rtpengine
-sudo iptables -I INPUT -p udp -j rtpengine
-sudo iptables -I rtpengine -j RTPENGINE --id 42
+
+if [ -x "$(rtpengine --codecs)" ] ; then
+    # /etc/init.d/ngcp-rtpengine-daemon start
+    sudo systemctl enable ngcp-rtpengine-daemon
+    sudo systemctl status ngcp-rtpengine-daemon
+    sudo systemctl start  ngcp-rtpengine-daemon
+    sudo systemctl status ngcp-rtpengine-daemon
+fi
 
 rtpengine --codecs
 
@@ -54,15 +58,6 @@ sudo systemctl disable kamailio.service
 sudo cp /etc/kamailio/kamailio.service /etc/systemd/system 
 sudo cp /etc/rtpengine/rtpengine.service /etc/systemd/system
 sudo systemctl daemon-reload
-
-chmod +x /etc/rtpengine/rtpengine-start-pre.sh
-chmod +x /etc/rtpengine/rtpengine-stop-post.sh
-chmod +x /etc/kamailio/iptables.sh
-
-# rtpengine
-sudo systemctl enable rtpengine.service
-#sudo systemctl unmask rtpengine.service
-sudo systemctl start rtpengine.service
 
 # kamailio
 sudo systemctl enable kamailio.service
