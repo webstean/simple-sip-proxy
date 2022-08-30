@@ -1,4 +1,6 @@
 
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
 
 Install-Module MicrosoftTeams
 Connect-MicrosoftTeams -UseDeviceAuthentication
