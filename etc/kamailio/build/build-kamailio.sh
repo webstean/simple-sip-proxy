@@ -11,6 +11,12 @@ sudo apt-get install -y autoremove
 # sqlite
 sudo apt-get install -y libsqlite3-0 libsqlite3-dev sqlite3
 
+# ffmpegs
+sudo apt-get install -y libavcodec-dev libavfilter-dev libavformat-dev libavresample-dev  libavutil-dev
+
+# pcap
+sudo apt-get install -y ibpcap-dev
+
 make include_modules="tls outbound jansson json sqlite" cfg
 make all
 sudo make install
