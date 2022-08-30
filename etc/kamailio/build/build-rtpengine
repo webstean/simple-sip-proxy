@@ -33,13 +33,13 @@ git clone https://github.com/vma/bcg729
 cd bcg729
 fakeroot dh binary
 if [ $? -ne 0 ]; then
-    printerr "Problem installing RTPEngine DEB's"
+    printerr "Problem building bcg727 DEB's"
     exit 1
 fi
 cd ..
 sudo dpkg -i libbcg729-*.deb
 if [ $? -ne 0 ]; then
-    printerr "Problem installing RTPEngine DEB's"
+    printerr "Problem installing bcg727 DEB's"
     exit 1
 fi
 
@@ -50,10 +50,18 @@ if ! (dpkg-checkbuilddeps) ; then
     # exit 1
 fi
 dpkg-buildpackage --no-sign
+if [ $? -ne 0 ]; then
+    printerr "Problem building RTPEngine DEB's"
+    exit 1
+fi
 # if desperate
 # dpkg-buildpackage  --no-sign -d
 
 dpkg -i ngcp-rtpengine-daemon_*.deb ngcp-rtpengine-iptables_*.deb ngcp-rtpengine-kernel-dkms_*.deb
+if [ $? -ne 0 ]; then
+    printerr "Problem installing RTPEngine DEB's"
+    exit 1
+fi
 
 # successful compilation of the module will produce the file xt_RTPENGINE.ko.
 # The module can be inserted into the running kernel manually through insmod xt_RTPENGINE.ko (which will result in an error if depending modules aren't loaded, 
